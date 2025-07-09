@@ -1,0 +1,8 @@
+node('linux') {
+    stage('Get a project') {
+        checkout scmGit(
+            branches: [[name: 'main']],
+            userRemoteConfigs: [[url: 'https://github.com/anmiroshnichenko/DZ_8.2']]
+        )
+    }
+}
