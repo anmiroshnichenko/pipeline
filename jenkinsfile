@@ -1,0 +1,16 @@
+def imageName = 'jenkinsciinfra/ircbot'
+
+node('linux') {
+    checksum scm
+    def imageTag = findTag()
+    stage('Build ircbot') {
+        withMavenEnv (["BUILD_NUMBER=${env.BUILD_NUMBER}:${commit}"]) {
+            sh 'make bot' //Make invokes Maven
+        }
+    }
+
+    stage ('Build & Deploy container') {
+        def img = docker.build("${imageName}:${imageTag}")
+        image.push()
+    }
+}
