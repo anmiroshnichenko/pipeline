@@ -5,7 +5,11 @@ node('linux') {
             userRemoteConfigs: [[url: 'https://github.com/anmiroshnichenko/DZ_8.2']]
         )
     }
-    stage('test') {
+    stage('Test') {
         sh '/usr/local/go/bin/go test .'
+    }
+
+    stage('Build') {
+        sh 'docker build . -t ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER'
     }
 }
