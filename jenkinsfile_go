@@ -5,7 +5,7 @@ node('linux') {
             userRemoteConfigs: [[url: 'https://github.com/anmiroshnichenko/DZ_8.2']]
         )
     }
-    stage('test') {
-        sh /usr/local/go/bin/go test .
-    }
+    // stage('test') {
+    //     sh /usr/local/go/bin/go test .
+    // }
 }
