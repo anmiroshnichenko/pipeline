@@ -1,4 +1,4 @@
-node('ansible') {
+node('linux') {
     def mvnHome
     def user = 'admin'
     env.APP_VERSION = '2.0.0'
