@@ -14,7 +14,10 @@ node('linux') {
         def customImage = docker.build("ubuntu-bionic:8082/hello-world:v${env.BUILD_ID}")
         // def customImage = docker.build("my-image:${env.BUILD_ID}")
         // customImage.push()
-
         // customImage.push('latest')
     }
-}
+
+    stage('Push') {
+        sh 'docker login 192.168.49.62:8082 -u admin -p Aleksandr && docker push ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER && docker logout'
+    }
+ }
