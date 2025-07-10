@@ -18,6 +18,6 @@ node('linux') {
     }
 
     stage('Push') {
-        sh 'docker login 192.168.49.62:8082 -u admin -p Aleksandr && docker push ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER && docker logout'
+        sh 'docker login 192.168.49.62:8082 -u admin -p Aleksandr && docker push 192.168.49.62:8082/hello-world:v$BUILD_NUMBER && docker logout'
     }
  }
