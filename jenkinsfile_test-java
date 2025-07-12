@@ -2,7 +2,11 @@ node {
     def mvnHome
     stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
-        git 'https://gitlab.com/avm-t/test-jenkins.git'
+        // git 'https://gitlab.com/avm-t/test-jenkins.git'
+        
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+        doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
+        userRemoteConfigs: [[credentialsId: '', url: 'https://gitlab.com/avm-t/test-jenkins.git']]]) 
         mvnHome = tool 'M3'        
     }
     stage('Build') {         

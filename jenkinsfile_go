@@ -1,12 +1,9 @@
 node('linux') {
     stage('Get a project') {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
-        doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], 
-        userRemoteConfigs: [[credentialsId: '', url: 'https://gitlab.com/avm-t/test-jenkins.git']]]) 
-        // checkout scmGit(
-        //     branches: [[name: 'main']],
-        //     userRemoteConfigs: [[url: 'https://github.com/anmiroshnichenko/DZ_8.2']]
-        // )
+        checkout scmGit(
+            branches: [[name: 'main']],
+            userRemoteConfigs: [[url: 'https://github.com/anmiroshnichenko/DZ_8.2']]
+        )
     }
     stage('Test') {
         sh '/usr/local/go/bin/go test .'
