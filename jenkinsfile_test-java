@@ -1,0 +1,6 @@
+node {
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://gitlab.com/avm-t/test-jenkins.git'        
+    }
+}
