@@ -1,2 +1,5 @@
-.idea
-lib
+.idea/
+lib/
+pipeline.iml
+/.idea/
+/.idea/libraries/
