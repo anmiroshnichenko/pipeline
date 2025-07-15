@@ -4,7 +4,8 @@ pipeline {
         stage('Get sources') { //название этапа пайплайна
             steps {
                 cleanWs() // очистка каталога сборки
-                checkout([$class: 'GitSCM', branches: [[name: params.GIT_REPO_BRANCH]], extensions: [], userRemoteConfigs: [[credentialsId: 'jenkins-jenkins', url: params.GIT_REPO_URL]]])
+                checkout([$class: 'GitSCM', branches: [[name: params.GIT_REPO_BRANCH]], extensions: [],
+                          userRemoteConfigs: [[credentialsId: 'jenkins-jenkins', url: params.GIT_REPO_URL]]])
                 script {
                     gitRepoPath = params.GIT_REPO_URL.substring(params.GIT_REPO_URL.lastIndexOf(":") + 1)
                     sonarProject = gitRepoPath.minus(".git").minus("-").minus("_").minus("/")
@@ -26,7 +27,7 @@ pipeline {
             agent {
                 docker {
                     image params.BUILDER_IMAGE
-                    args '-v /home/jenkins/.cache:/home/jenkins/.cache '
+                    args '-v /home/jenkins/.cache:/home/jenkins/.cache'
                     registryCredentialsId 'docker-registry'
                     registryUrl "https://harbor.iops-test.com"
                     reuseNode true
